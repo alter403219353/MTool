@@ -1,7 +1,8 @@
 {
   "name": "alter403219353/m-tool",
   "description": "这是一个常用的php工具类",
-  "homepage": "https://github.com/alter403219353/MTool",
+  "homepage": "https://github.com/alter403219353/m-tool",
+  "license": "MIT",
   "require": {
     "php":">=5.3"
   },
