@@ -1,0 +1,13 @@
+{
+  "name": "alter403219353/MTool",
+  "description": "这是一个常用的php工具类",
+  "homepage": "https://github.com/alter403219353/MTool",
+  "require": {
+    "php":">=5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "MTool\\": "src/MTool"
+    }
+  }
+}
