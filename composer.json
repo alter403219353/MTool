@@ -3,7 +3,7 @@
   "description": "这是一个常用的php工具类",
   "homepage": "https://github.com/alter403219353/m-tool",
   "license": "MIT",
-  "version":"1.0.2",
+  "version":"1.0.3",
   "require": {
     "php":">=5.3"
   },
