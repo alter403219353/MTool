@@ -1,7 +1,10 @@
 这是一个常用的php工具类
 
 ``` php5
+use MTool\MToolBase;
+
 //数组类常用方法
+
 $MToolBase = new MToolBase();
 
            $data[3] =[
