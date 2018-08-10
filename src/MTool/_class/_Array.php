@@ -8,11 +8,9 @@ namespace MTool\_class;
  */
 class _Array
 {
-
     /**数组过滤查询
-     * @param $data  数组
-     * @param $arg  参数
-     * @param bool $is_keep_index 是否保留索引
+     * @param $data
+     * @param $arg
      * @return array
      */
     public function _filter($data,$arg,$is_keep_index = true){
@@ -21,7 +19,7 @@ class _Array
             case 'array':
                 return $this->_filter_array($data,$arg,$is_keep_index);
             case 'object':
-                return $this->_filter_object($data,$arg);
+                return $this->_filter_object($data,$arg,$is_keep_index);
                 break;
             default:
                 break;
@@ -67,13 +65,17 @@ class _Array
     /**
      * 过滤对象类型
      */
-    private function _filter_object($data,$arg){
+    private function _filter_object($data,$arg,$is_keep_index){
 
         $_list    = [];
 
         foreach ($data as $k=>$v){
             if($arg($k,$v)){
-                $_list[] = $v;
+                if($is_keep_index){
+                    $_list[$k] = $v;
+                }else{
+                    $_list[]   = $v;
+                }
             }
         }
 
@@ -236,7 +238,12 @@ class _Array
 
                 foreach ($arg as $key=>$val){
 
-                    $keysvalue  =  array_column($_data, $key);
+
+                    foreach ($_data as $_k=>$_v){
+                        if(isset($_v[$key])){
+                            $keysvalue[$_k] = $_v[$key];
+                        }
+                    }
 
                     if($val == 'desc'){
 
@@ -247,15 +254,11 @@ class _Array
                         asort($keysvalue);
                     }
 
-                    reset($keysvalue);
-
-                    foreach ($keysvalue as $k=>$v){
-                        $_data[$k] = $data[$k];
-                    }
                 }
 
                 foreach ($keysvalue as $k=>$v){
-                    $new_array[$k] = $data[$k];
+
+                    $new_array[$k]  =  $data[$k];
                 }
 
                 return $new_array;
