@@ -42,11 +42,48 @@ use MTool\MToolBase;
             $r1 = $MToolBase->_Array()->_filter($data,['type'=>1]);
 
             print_r($r1);
+            
+Array
+(
+    [3] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+)            
 
             //过滤条件返回结果)不保留索引)
             $r2 = $MToolBase->_Array()->_filter($data,['type'=>1],false);
 
             print_r($r2);
+            
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+)   
+            
 
             //回调过滤条件(保留索引)
             $r3 = $MToolBase->_Array()->_filter($data,function ($k,$v){
@@ -55,6 +92,25 @@ use MTool\MToolBase;
             });
 
             print_r($r3);
+            
+Array
+(
+    [3] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+)            
+            
 
             //回调过滤条件(不保留索引)
             $r4 = $MToolBase->_Array()->_filter($data,function ($k,$v){
@@ -64,11 +120,42 @@ use MTool\MToolBase;
             },false);
 
             print_r($r4);
+            
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+)            
+            
 
             //删除数组(数组为$r3)
             $r5  = $MToolBase->_Array()->_remove($data,$r3);
 
             print_r($r5);
+            
+Array
+(
+    [5] => Array
+        (
+            [id] => 3
+            [name] => test3
+            [type] => 2
+        )
+
+)            
+            
 
             /**根据两个数组的条件来修改要修改的数组,返回第一个数组修改的数据(仅支持两个数组层级是一层)
              * @param $data   数组1
@@ -85,12 +172,94 @@ use MTool\MToolBase;
 
             print_r($r6);
 
+Array
+(
+    [3] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+            [status] => 1
+            [delete] => 1
+        )
+
+    [4] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+            [status] => 1
+            [delete] => 1
+        )
+
+    [5] => Array
+        (
+            [id] => 3
+            [name] => test3
+            [type] => 2
+            [status] => 0
+            [delete] => 1
+        )
+
+)
+
             //数组排序(默认为保留索引) 排序参数 desc  升序  asc 降序
             $r7   = $MToolBase->_Array()->_sortBy($data,['id'=>'desc']);
 
             print_r($r7);
+            
+Array
+(
+    [5] => Array
+        (
+            [id] => 3
+            [name] => test3
+            [type] => 2
+        )
+
+    [4] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+    [3] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+)  
+            
 
             $r8   = $MToolBase->_Array()->_sortBy($data,['id'=>'desc'],false);
 
             print_r($r8);
+            
+Array
+(
+    [0] => Array
+        (
+            [id] => 3
+            [name] => test3
+            [type] => 2
+        )
+
+    [1] => Array
+        (
+            [id] => 2
+            [name] => test2
+            [type] => 1
+        )
+
+    [2] => Array
+        (
+            [id] => 1
+            [name] => test1
+            [type] => 1
+        )
+
+)
 ```
