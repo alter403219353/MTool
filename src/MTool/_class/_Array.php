@@ -8,16 +8,18 @@ namespace MTool\_class;
  */
 class _Array
 {
+
     /**数组过滤查询
-     * @param $data
-     * @param $arg
+     * @param $data  数组
+     * @param $arg  参数
+     * @param bool $is_keep_index 是否保留索引
      * @return array
      */
-    public function _filter($data,$arg){
+    public function _filter($data,$arg,$is_keep_index = true){
 
         switch (gettype($arg)){
             case 'array':
-                return $this->_filter_array($data,$arg);
+                return $this->_filter_array($data,$arg,$is_keep_index);
             case 'object':
                 return $this->_filter_object($data,$arg);
                 break;
@@ -32,7 +34,7 @@ class _Array
      * @param $arg
      * @return array
      */
-    private function _filter_array($data,$arg){
+    private function _filter_array($data,$arg,$is_keep_index){
 
         $_list    = [];
 
@@ -51,7 +53,11 @@ class _Array
             }
 
             if($_filter_num == $_arg_num){
-                $_list[] = $v;
+                if($is_keep_index){
+                    $_list[$k] = $v;
+                }else{
+                    $_list[] = $v;
+                }
             }
         }
 
